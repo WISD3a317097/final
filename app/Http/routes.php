@@ -20,7 +20,11 @@ Route::get('/login',function(){
 Route::get('/login2',function(){
     return view('login2');
 });
-
+Route::group(['prefix' => 'store/admin'],function(){
+    Route::get('/',function(){
+        return view('shop_index');
+    });
+});
 
 #api
 Route::group(['prefix' => 'rest/api'], function () {
