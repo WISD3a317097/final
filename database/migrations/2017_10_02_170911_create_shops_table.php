@@ -17,7 +17,7 @@ class CreateShopsTable extends Migration
             $table->string('email')->unique();
             $table->string('city',10);
             $table->string('address');
-            $table->string('password',20);
+            $table->string('password',255);
             $table->integer('active');
             $table->timestamps('created_at');
         });
