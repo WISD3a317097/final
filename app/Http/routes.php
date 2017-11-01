@@ -25,7 +25,11 @@ Route::group(['prefix' => 'store/admin'],function(){
         return view('shop_index');
     });
 });
-
+Route::group(['prefix' => 'member/admin'],function(){
+    Route::get('/','MemberController@index');
+    Route::get('/setting','MemberController@setting');
+    
+});
 #api
 Route::group(['prefix' => 'rest/api'], function () {
     Route::post('/login','AdminController@login');
