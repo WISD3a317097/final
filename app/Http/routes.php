@@ -20,6 +20,8 @@ Route::get('/login',function(){
 Route::get('/login2',function(){
     return view('login2');
 });
+
+
 Route::group(['prefix' => 'store/admin'],function(){
     Route::get('/',function(){
         return view('shop_index');
@@ -35,5 +37,9 @@ Route::group(['prefix' => 'rest/api'], function () {
     Route::post('/login','AdminController@login');
     Route::post('/register','AdminController@register');
     Route::post('/shop_login','AdminController@storelogin');
-   
+    Route::post('/setting','AdminController@setting');
+    Route::post('/setting/shop','AdminController@shop');
+    Route::post('/setting/recommend','AdminController@recommend');
+    Route::post('/setting/disturb','AdminController@disturb');
 });
+#resource shop rest api
