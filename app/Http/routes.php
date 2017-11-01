@@ -22,6 +22,10 @@ Route::get('/login2',function(){
 });
 
 
-
-
-
+#api
+Route::group(['prefix' => 'rest/api'], function () {
+    Route::post('/login','AdminController@login');
+    Route::post('/register','AdminController@register');
+    Route::post('/shop_login','AdminController@storelogin');
+   
+});
