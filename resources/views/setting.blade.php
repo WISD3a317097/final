@@ -59,6 +59,7 @@
                                 shop.innerHTML+="<a role='button' class='btn btn-primary active text-light btn-lg btn-block' onclick=open_shop()>開店</a>"
                             }
                             if(data.content.recommend==1){
+                                
                                 recommend.innerHTML+="<a  role='button' class='btn btn-primary active text-light btn-lg btn-block' onclick='open_recommend(0)'>關閉</a>"
                                 
                             }
