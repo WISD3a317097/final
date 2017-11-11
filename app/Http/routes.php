@@ -32,7 +32,7 @@ Route::group(['prefix' => 'member/admin'],function(){
     Route::get('/setting','MemberController@setting');
     
 });
-#api
+#會員api＋登入註冊
 Route::group(['prefix' => 'rest/api'], function () {
     Route::post('/login','AdminController@login');
     Route::post('/register','AdminController@register');
@@ -42,4 +42,7 @@ Route::group(['prefix' => 'rest/api'], function () {
     Route::post('/setting/recommend','AdminController@recommend');
     Route::post('/setting/disturb','AdminController@disturb');
 });
-#resource shop rest api
+Route::group(['prefix'=>'rest/api/shop'],function(){
+    Route::post('upload','ShopController@upload');
+});
+# shop api
