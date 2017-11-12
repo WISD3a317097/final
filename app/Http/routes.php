@@ -26,6 +26,9 @@ Route::group(['prefix' => 'store/admin'],function(){
     Route::get('/',function(){
         return view('shop_index');
     });
+    Route::get('/goods_management',function(){
+        return view('shop_management');
+    });
 });
 Route::group(['prefix' => 'member/admin'],function(){
     Route::get('/','MemberController@index');

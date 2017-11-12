@@ -96,7 +96,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">EATs</a>
+        <a class="navbar-brand" href="/">EATs</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -137,7 +137,7 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="#">貨物管理</a>
+                        <a class="nav-link" href="/store/admin/goods_management">貨物管理</a>
                     </li>
                     
                      <li class="nav-item">
