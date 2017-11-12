@@ -34,7 +34,6 @@ class ShopController extends Controller
                 else{
                     Storage::disk('local')->put($path, $img);
                 }
-                
                 $food=new foodlist;
                 $food->food=$request['id'];
                 $food->money=$request['money'];
@@ -58,17 +57,15 @@ class ShopController extends Controller
                 $food->url=-1;
                 $food->content=$request['content'];
                 $food->shops_id=$id;
-                
                 $food->save();
                 return response()->json(['success' => '1']);
             }
             catch(\Exception $e){
-                
                 return response()->json(['success' => '0']);
             }
 
         }
-        #echo $url;
+        
     }
     
 }

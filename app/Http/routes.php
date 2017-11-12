@@ -43,6 +43,7 @@ Route::group(['prefix' => 'rest/api'], function () {
     Route::post('/setting/disturb','AdminController@disturb');
 });
 Route::group(['prefix'=>'rest/api/shop'],function(){
-    Route::post('upload','ShopController@upload');
+    Route::post('upload','ShopController@upload');#上架
+    Route::post('goods','ShopContorller@goods');#貨品管理
 });
 # shop api
