@@ -16,6 +16,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script>
+             var cook=Cookies.get('shop');
              $(document).ready(function(){
                 var cook=Cookies.get('shop');
                 console.log(cook)

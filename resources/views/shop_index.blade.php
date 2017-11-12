@@ -16,10 +16,7 @@
                 <label>價錢(單一價錢)</label>
                 <input  class="form-control" id="goods_money" placeholder="輸入商品價錢">
             </div>
-            <div class="form-group">
-                <label>數量(預計提供每天的數量)</label>
-                <input  class="form-control" id="goods_amount" placeholder="輸入數量">
-            </div>
+            
             <div class="form-group">
                 <label>介紹</label>
                 <input  class="form-control" id="goods_content" placeholder="輸入商品介紹">
@@ -37,6 +34,7 @@
        <div class='col'>
        </div>
        <script>
+            
             var img_base_url="";
             $(document).ready(function(){
                 function format_float(num, pos){
@@ -66,11 +64,10 @@
                 var goods=document.getElementById("goods").value;
                 var goods_money=document.getElementById('goods_money').value;
                 var goods_content=document.getElementById('goods_content').value;
-                var goods_amount=document.getElementById('goods_amount').value;
-                if (img_base_url!=null){
+                if (img_base_url==''){
                     img_base_url= 0
-                       
                 }
+                console.log(img_base_url);
                 $.ajax({
                     url: '/rest/api/shop/upload',
                     dataType: "json",
@@ -78,7 +75,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    data:{id:goods,money:goods_money,content:goods_content,url:img_base_url},
+                    data:{email:cook,id:goods,money:goods_money,content:goods_content,url:img_base_url},
                     success:function(data){
                         console.log(data)
                     }

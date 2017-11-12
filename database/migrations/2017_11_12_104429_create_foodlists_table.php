@@ -15,7 +15,7 @@ class CreateFoodlistsTable extends Migration
         Schema::create('foodlists', function (Blueprint $table) {
             $table->increments('food_id')->index();
             $table->string('food');
-            $table->integer('amount');
+            $table->integer('money');
             $table->string('url');
             $table->longText('content');
             $table->integer('shops_id')->unsigned();
