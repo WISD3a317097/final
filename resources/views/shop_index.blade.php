@@ -17,6 +17,14 @@
                 <input  class="form-control" id="goods_money" placeholder="輸入商品價錢">
             </div>
             <div class="form-group">
+                <label>數量(預計提供每天的數量)</label>
+                <input  class="form-control" id="goods_amount" placeholder="輸入數量">
+            </div>
+            <div class="form-group">
+                <label>介紹</label>
+                <input  class="form-control" id="goods_content" placeholder="輸入商品介紹">
+            </div>
+            <div class="form-group">
                 <label>圖片</label>
                 <input type="file" class="form-control-file upl" id="goods_image" >
                 <img  class="rounded mx-auto d-block preview" style="max-width: 200px; max-height: 200px;">
@@ -57,6 +65,8 @@
             function goods_upload(){
                 var goods=document.getElementById("goods").value;
                 var goods_money=document.getElementById('goods_money').value;
+                var goods_content=document.getElementById('goods_content').value;
+                var goods_amount=document.getElementById('goods_amount').value;
                 if (img_base_url!=null){
                     img_base_url= 0
                        
@@ -68,7 +78,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    data:{id:goods,money:goods_money,url:img_base_url},
+                    data:{id:goods,money:goods_money,content:goods_content,url:img_base_url},
                     success:function(data){
                         console.log(data)
                     }
