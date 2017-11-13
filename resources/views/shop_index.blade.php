@@ -27,12 +27,14 @@
                 <img  class="rounded mx-auto d-block preview" style="max-width: 200px; max-height: 200px;">
                 <div class="size"></div>
             </div>
+            <p class="h6 text-danger" id="warning"></p>
             <a role="button" class="text-light btn btn-primary" onclick="goods_upload()">上架</a>
         </form>
        </div>
        
        <div class='col'>
        </div>
+
        <script>
             
             var img_base_url="";
@@ -67,19 +69,31 @@
                 if (img_base_url==''){
                     img_base_url= 0
                 }
-                console.log(img_base_url);
-                $.ajax({
-                    url: '/rest/api/shop/upload',
-                    dataType: "json",
-                    type: 'post',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data:{email:cook,id:goods,money:goods_money,content:goods_content,url:img_base_url},
-                    success:function(data){
-                        console.log(data)
-                    }
-                });
+                if (goods!='' &&goods_money!=''){
+                    $.ajax({
+                        url: '/rest/api/shop/upload',
+                        dataType: "json",
+                        type: 'post',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data:{email:cook,id:goods,money:goods_money,content:goods_content,url:img_base_url},
+                        success:function(data){
+                            console.log(data)
+                            if(data.success==1){
+                                location.href='/store/admin';
+                            }
+                            else{
+                                document.getElementById('warning').innerHTML='發生錯誤,請重新上傳'
+                            }
+                        }
+                    });
+            
+                }
+                else{
+                    document.getElementById('warning').innerHTML='請填寫商品名稱和價錢'  
+                }
+                
                 
             }    
        </script>

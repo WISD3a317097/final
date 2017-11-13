@@ -47,6 +47,7 @@ Route::group(['prefix' => 'rest/api'], function () {
 });
 Route::group(['prefix'=>'rest/api/shop'],function(){
     Route::post('upload','ShopController@upload');#上架
-    Route::post('goods','ShopContorller@goods');#貨品管理
+    Route::get('goods','ShopController@get_goods');#得到貨物
+
 });
 # shop api

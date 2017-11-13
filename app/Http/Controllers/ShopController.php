@@ -7,6 +7,7 @@ use \Exception;
 use App\Http\Requests;
 use App\Http\Model\Foodlist;
 use App\Http\Model\User;
+
 class ShopController extends Controller
 {
     public function Get_Shop_Id($email){
@@ -39,12 +40,12 @@ class ShopController extends Controller
                 $food->money=$request['money'];
                 $food->url=$path;
                 $food->content=$request['content'];
+                $food->amount=0;
                 $food->shops_id=$id;
                 $food->save();
                 return response()->json(['success' => '1']);
             }
             catch(\Exception $e){
-                
                 return response()->json(['success' => '0']);
             }
         }
@@ -55,6 +56,7 @@ class ShopController extends Controller
                 $food->food=$request['id'];
                 $food->money=$request['money'];
                 $food->url=-1;
+                $food->amount=0;
                 $food->content=$request['content'];
                 $food->shops_id=$id;
                 $food->save();
@@ -67,5 +69,7 @@ class ShopController extends Controller
         }
         
     }
-    
+    public function get_goods(Request $request){
+        
+    }
 }
