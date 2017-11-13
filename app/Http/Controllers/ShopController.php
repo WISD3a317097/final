@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use \Exception;
 use App\Http\Requests;
 use App\Http\Model\Foodlist;
-use App\Http\Model\User;
+use App\Http\Model\Shop;
 
 class ShopController extends Controller
 {
     public function Get_Shop_Id($email){
-        $user=new User;
+        $user=new shop;
         $user->email=$email;
         $ans=$user->where('email',$user->email)->first()->id;
         return $ans;
