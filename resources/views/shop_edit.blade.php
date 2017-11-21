@@ -77,20 +77,19 @@
                    document.getElementById('goods_money').value=data[0].money
                    document.getElementById("goods_content").value=data[0].content
                    document.getElementById('goods_amount').value=data[0].amount
-                   document.getElementById("image").src='/image/'+data[0].url
+                   if(data[0].url!='-1')
+                        document.getElementById("image").src='/image/'+data[0].url
                    img_base_url=data[0].url
                 }
             }
         });
     });
     function goods_upload(){
+        
         var goods=document.getElementById("goods").value;
         var goods_money=document.getElementById('goods_money').value;
         var goods_amount=document.getElementById('goods_amount').value
         var goods_content=document.getElementById('goods_content').value;
-        if (img_base_url==''){
-            img_base_url= 0
-        }
         
         if (goods!='' &&goods_money!=''&&parseInt(goods_money)>1 &&parseInt(goods_amount)>-1){
             $.ajax({

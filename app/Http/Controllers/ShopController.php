@@ -18,9 +18,42 @@ class ShopController extends Controller
     }
     public function goods_update(Request $request){
         $foodlist=new foodlist;
-        $foodlist=$foodlist->where('food_id','=',$request['food_id'])->get();
+        $food=$foodlist->where('food_id','=',$request['food_id'])->first();
+        $path=$request['url'];
+        #echo $path,$food->url;
+        if($path==$food->url){
+            try{
+                $food->where('food_id',$request['food_id'])->update(['money'=>$request['money'],'amount'=>$request['amount'],
+                'content'=>$request['content']]);
+            }catch(\Exception $e){
+                return response()->json(['success' => '0']);
+            }
+        }else{
+            
+            try{
+                $img=str_replace('data:image/jpeg;base64,', '', $path);
+                $img = str_replace(' ', '+', $img);
+                $img = base64_decode($img);
+                $path2='img_'.time().'.jpg';
+                $exists = Storage::disk('local')->exists($path2);
+                
+                if($exists==1){
+                    return response()->json(['success' => '0']);
+                }
+                else{
+                    Storage::disk('local')->put($path2, $img);
+                }
+                echo $path2;
+                $food->where('food_id',$request['food_id'])->update(['money'=>$request['money'],'amount'=>$request['amount'],
+                'content'=>$request['content'],'url'=>$path2]);
+            }catch(\Exception $e){
+                
+                return response()->json(['success' => '0']);
+            }
+
+        }
+        return response()->json(['success' => '1']);
         
-        echo $foodlist;
     }
     public function upload(Request $request){
         
