@@ -61,8 +61,8 @@ class ShopController extends Controller
                 return response()->json(['success' => '1']);
             }
             catch(\Exception $e){
-                echo $e;
-                #return response()->json(['success' => '0']);
+                #echo $e;
+                return response()->json(['success' => '0']);
             }
 
         }
@@ -70,7 +70,7 @@ class ShopController extends Controller
     }
     public function get_goods(Request $request){
         $id=$this->Get_Shop_Id($request['email']);
-        $ans=new shop;
+        $ans=new Shop;
         $ans=$ans::find($id);
         #echo $ans;
         foreach($ans->foodlist as $shop){
@@ -83,5 +83,15 @@ class ShopController extends Controller
         }
 
         return response()->json(['success'=>'1','data'=>$data]);
+    }
+    public function goods_delete(Request $request){
+        try{
+            $food=new foodlist;
+            $ans=$food->where('food_id', '=', $request['id'])->delete();
+            
+        }catch(\Exception $e){
+            return response()->json(['success' => '0']);
+        }
+        return response()->json(['success' => '1']);
     }
 }

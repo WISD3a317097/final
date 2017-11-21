@@ -42,15 +42,16 @@
                             var len=data.data.length;
                             var html=''
                             for(var i=0;i<len;i++){
-                                html+="<tr><th scope=1>"+data.data[i].id+"</th><td>"+data.data[i].food+"</td><td>"+data.data[i].money+"</td><td>"+data.data[i].amount+"</td>";
-                                if(data.data[i]!="-1"){
+                                html+="<tr><th scope=1>"+i+"</th><td>"+data.data[i].food+"</td><td>"+data.data[i].money+"</td><td>"+data.data[i].amount+"</td>";
+                                //console.log(typeof data.data[i].img)
+                                if(data.data[i].img!="-1"){
                                     html+="<td>有</td>"
                                 }
                                 else{
                                     html+="<td>沒有</td>"
                                 }
                                 //<a class="btn btn-primary" href="#" role="button">Link</a>
-                                html+="<td><a class='btn btn-outline-primary text-primary' role='button' onclick='golink()'>編輯</a><a class='btn btn-outline-danger text-danger ml-2' role='button' onclick='delete_food()'>刪除</a></td></tr></tr>";
+                                html+="<td><a class='btn btn-outline-primary text-primary' role='button' onclick='golink()'>編輯</a><a class='btn btn-outline-danger text-danger ml-2' role='button' onclick='delete_food("+data.data[i].id+")'>刪除</a></td></tr></tr>";
                                 console.log(data.data[i]);
                             }
                             manager.innerHTML=html;
@@ -65,6 +66,21 @@
         });
         function golink(){
 
+        }
+        function delete_food(food){
+            
+            $.ajax({
+                url:'/rest/api/shop/goods_delete',
+                type:'DELETE',
+                dataType:'json',
+                headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                data:{id:food},
+                success:function(data){
+                    console.log(data)
+                }
+            });
         }
     </script>
 @endsection
