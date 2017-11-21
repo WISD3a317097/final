@@ -23,12 +23,9 @@ Route::get('/login2',function(){
 
 
 Route::group(['prefix' => 'store/admin'],function(){
-    Route::get('/',function(){
-        return view('shop_index');
-    });
-    Route::get('/goods_management',function(){
-        return view('shop_management');
-    });
+    Route::get('/','StoreController@index');
+    Route::get('/goods_management','StoreController@goods_management');
+    Route::get('goods_update/{id}','StoreController@goods_update');
 });
 Route::group(['prefix' => 'member/admin'],function(){
     Route::get('/','MemberController@index');
@@ -48,6 +45,7 @@ Route::group(['prefix' => 'rest/api'], function () {
 Route::group(['prefix'=>'rest/api/shop'],function(){
     Route::post('upload','ShopController@upload');#上架
     Route::get('goods','ShopController@get_goods');#得到貨物
-    Route::delete('goods_delete','ShopController@goods_delete');
+    
+    Route::delete('goods_delete','ShopController@goods_delete');#刪除貨物
 });
 # shop api

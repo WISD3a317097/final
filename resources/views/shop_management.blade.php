@@ -65,7 +65,7 @@
                 });
         });
         function golink(){
-
+            
         }
         function delete_food(food){
             
@@ -78,7 +78,7 @@
                     },
                 data:{id:food},
                 success:function(data){
-                    console.log(data)
+                    location.reload();
                 }
             });
         }
