@@ -51,7 +51,7 @@
                                     html+="<td>沒有</td>"
                                 }
                                 //<a class="btn btn-primary" href="#" role="button">Link</a>
-                                html+="<td><a class='btn btn-outline-primary text-primary' role='button' onclick='golink()'>編輯</a><a class='btn btn-outline-danger text-danger ml-2' role='button' onclick='delete_food("+data.data[i].id+")'>刪除</a></td></tr></tr>";
+                                html+="<td><a class='btn btn-outline-primary text-primary' role='button' onclick='golink("+data.data[i].id+")'>編輯</a><a class='btn btn-outline-danger text-danger ml-2' role='button' onclick='delete_food("+data.data[i].id+")'>刪除</a></td></tr></tr>";
                                 console.log(data.data[i]);
                             }
                             manager.innerHTML=html;
@@ -64,8 +64,8 @@
                     }
                 });
         });
-        function golink(){
-            
+        function golink(id){
+            location.href='goods_update/'+id;
         }
         function delete_food(food){
             
