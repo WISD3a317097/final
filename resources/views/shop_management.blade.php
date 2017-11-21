@@ -45,10 +45,10 @@
                                 html+="<tr><th scope=1>"+i+"</th><td>"+data.data[i].food+"</td><td>"+data.data[i].money+"</td><td>"+data.data[i].amount+"</td>";
                                 //console.log(typeof data.data[i].img)
                                 if(data.data[i].img!="-1"){
-                                    html+="<td>有</td>"
+                                    html+="<td>上傳</td>"
                                 }
                                 else{
-                                    html+="<td>沒有</td>"
+                                    html+="<td>無上傳</td>"
                                 }
                                 //<a class="btn btn-primary" href="#" role="button">Link</a>
                                 html+="<td><a class='btn btn-outline-primary text-primary' role='button' onclick='golink("+data.data[i].id+")'>編輯</a><a class='btn btn-outline-danger text-danger ml-2' role='button' onclick='delete_food("+data.data[i].id+")'>刪除</a></td></tr></tr>";

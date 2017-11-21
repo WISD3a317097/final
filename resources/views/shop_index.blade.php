@@ -16,7 +16,6 @@
                 <label>價錢(單一價錢)</label>
                 <input  class="form-control" id="goods_money" placeholder="輸入商品價錢">
             </div>
-            
             <div class="form-group">
                 <label>介紹</label>
                 <input  class="form-control" id="goods_content" placeholder="輸入商品介紹">

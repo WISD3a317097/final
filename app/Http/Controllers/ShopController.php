@@ -16,6 +16,12 @@ class ShopController extends Controller
         $ans=$user->where('email',$user->email)->first()->id;
         return $ans;
     }
+    public function goods_update(Request $request){
+        $foodlist=new foodlist;
+        $foodlist=$foodlist->where('food_id','=',$request['food_id'])->get();
+        
+        echo $foodlist;
+    }
     public function upload(Request $request){
         
         $id=$this->Get_Shop_Id($request['email']);
