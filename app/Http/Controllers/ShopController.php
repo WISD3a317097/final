@@ -94,4 +94,18 @@ class ShopController extends Controller
         }
         return response()->json(['success' => '1']);
     }
+    public function goods_one(Request $request){
+        
+        try{
+            
+            $food=new foodlist;
+            $ans=$food->where('food_id','=',$request['food_id'])->get();
+            
+        }catch(\Exception $e){
+        
+            return response()->json(['success' => '0']);
+        }   
+        return response()->json(['success' => '1','data'=>$ans]);
+        
+    }
 }

@@ -18,6 +18,6 @@ class StoreController extends Controller
         return view('shop_management');
     }
     public function goods_update(){
-        echo "fuck";
+        return view('shop_edit');
     }
 }
