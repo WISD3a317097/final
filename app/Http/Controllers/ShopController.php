@@ -21,9 +21,7 @@ class ShopController extends Controller
         $id=$this->Get_Shop_Id($request['email']);
         $url=$request['url'];
         if($url!='0'){
-            
             try{
-                
                 $img=str_replace('data:image/jpeg;base64,', '', $url);
                 $img = str_replace(' ', '+', $img);
                 $img = base64_decode($img);
@@ -41,7 +39,7 @@ class ShopController extends Controller
                 $food->url=$path;
                 $food->content=$request['content'];
                 $food->amount=0;
-                $food->shops_id=$id;
+                $food->shop_id=$id;
                 $food->save();
                 return response()->json(['success' => '1']);
             }
@@ -58,18 +56,32 @@ class ShopController extends Controller
                 $food->url=-1;
                 $food->amount=0;
                 $food->content=$request['content'];
-                $food->shops_id=$id;
+                $food->shop_id=$id;
                 $food->save();
                 return response()->json(['success' => '1']);
             }
             catch(\Exception $e){
-                return response()->json(['success' => '0']);
+                echo $e;
+                #return response()->json(['success' => '0']);
             }
 
         }
         
     }
     public function get_goods(Request $request){
-        
+        $id=$this->Get_Shop_Id($request['email']);
+        $ans=new shop;
+        $ans=$ans::find($id);
+        #echo $ans;
+        foreach($ans->foodlist as $shop){
+           
+            if($shop->count()>0)
+                $data[]=array('id'=>$shop->food_id,'food'=>$shop->food,'money'=>$shop->money,'img'=>$shop->url,'content'=>$shop->content,'amount'=>$shop->amount);
+            else{
+                return response()->json(['success' => '0']); 
+            }
+        }
+
+        return response()->json(['success'=>'1','data'=>$data]);
     }
 }

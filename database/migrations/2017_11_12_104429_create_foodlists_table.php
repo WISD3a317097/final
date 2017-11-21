@@ -19,8 +19,8 @@ class CreateFoodlistsTable extends Migration
             $table->string('url');
             $table->longText('content')->nullable();
             $table->integer('amount');
-            $table->integer('shops_id')->unsigned();
-            $table->foreign('shops_id')->references('id')->on('shops');
+            $table->integer('shop_id')->unsigned();
+            $table->foreign('shop_id')->references('id')->on('shops');
             $table->timestamps();
 
         });
