@@ -26,24 +26,37 @@
     <script>
     var cook=Cookies.get('shop');
         $(document).ready(function(){
-            
+            getshop();
             var cook=Cookies.get('shop');
             console.log(cook)
             if (typeof cook != 'undefined' &&cook!='' && cook!='undefined'){    
                 var html="<div class=dropdown><a class='btn btn-outline-success text-success' role=button id=member data-toggle=dropdown aria-haspopup='true' aria-expanded=false>"+cook+"</a><div class='dropdown-menu bg-dark' aria-labelledby='dropdownMenuButton'><a class='dropdown-item bg-dark text-success' onclick=logout()>登出</a></div></div>"
                 document.getElementById('members').innerHTML=html;
-            }   
+            }
+
         });
         function logout(){
             Cookies.remove('shop');
             location.href='/';
+        }
+        function getshop(){
+
+            $.ajax({
+                url: '/store/admin/get_all',
+                dataType: "json",
+                type: 'get',
+                data: { locate:'台北'},
+                success: function (data) {
+                    console.log(data)
+                }        
+            });
         }
     </script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top mb-5 ">
-            <a class="navbar-brand" href="#">EATs</a>
+            <a class="navbar-brand" href="/">EATs</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -68,32 +81,36 @@
             <div class='row'>
                 <div class="mt-5">
                     <h2>台北的餐廳</h2>
-                    <div class="row mt-4">
+                    <div class="row mt-4" id="shop">
+                        
                         <div class="col-4">
-                            <div class="card">
+                            <div class="card" style="width: 20rem;">
+                                <img class="card-img-top" src="/image/img_1511265472.jpg" alt="Card image cap">
                                 <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <h4 class="card-title">Card title</h4>
+                                    <!--p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p-->
                                     <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
+                              </div>
                             </div>
                         </div>
                         <div class="col-4">
-                            <div class="card">
+                            <div class="card" style="width: 20rem;">
+                                <img class="card-img-top" src="/image/img_1511265472.jpg" alt="Card image cap">
                                 <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <h4 class="card-title">Card title</h4>
+                                    <!--p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p-->
                                     <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
+                              </div>
                             </div>
                         </div>
                         <div class="col-4">
-                            <div class="card">
+                            <div class="card" style="width: 20rem;">
+                                <img class="card-img-top" src="/image/img_1511265472.jpg" alt="Card image cap">
                                 <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <h4 class="card-title">Card title</h4>
+                                    <!--p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p-->
                                     <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
+                              </div>
                             </div>
                         </div>
                     </div>

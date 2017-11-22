@@ -100,7 +100,10 @@
         }
         function golink(){
             var locate=document.getElementById("locate").value;
-            if (locate=="台北" || locate=="台北市")
+            if (locate=="台北" || locate=="台北市"){
+                locate="台北"
+            }
+
                 location.href="/stores/"+locate;
         }
         var cook=Cookies.get('shop');

@@ -144,6 +144,9 @@
                      <li class="nav-item">
                         <a class="nav-link" href="#">營收明細</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/store/admin/setting">設定</a>
+                    </li>
                     
                 </ul>
             </nav>

@@ -28,13 +28,15 @@ Route::group(['prefix' => 'store/admin'],function(){
     Route::get('/','StoreController@index');
     Route::get('/goods_management','StoreController@goods_management');
     Route::get('goods_update/{id}','StoreController@goods_update');
+    Route::get('/setting','StoreController@setting');
+    Route::get('/get_all','StoreController@get_all');
 });
 Route::group(['prefix' => 'member/admin'],function(){
     Route::get('/','MemberController@index');
     Route::get('/setting','MemberController@setting');
     
 });
-#會員api＋登入註冊
+#會員api＋登入註冊+ 設定
 Route::group(['prefix' => 'rest/api'], function () {
     Route::post('/login','AdminController@login');
     Route::post('/register','AdminController@register');
