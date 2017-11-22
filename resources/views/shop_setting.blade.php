@@ -33,7 +33,7 @@
                             <input class="form-check-input" type="radio" name="4" id="inlineRadio4" value="4"> 宵夜
                         </label>                        
                     </blockquote>
-                    <a role="button" class="btn btn-primary text-light mt-3">確定</a>
+                    <a role="button" class="btn btn-primary text-light mt-3">確定開店</a>
                 </div>
             </div>
          
