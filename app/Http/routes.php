@@ -20,7 +20,9 @@ Route::get('/login',function(){
 Route::get('/login2',function(){
     return view('login2');
 });
-
+Route::get('/stores',function(){
+    echo "fuck";
+});
 
 Route::group(['prefix' => 'store/admin'],function(){
     Route::get('/','StoreController@index');
