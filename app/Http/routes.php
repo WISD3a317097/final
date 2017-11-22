@@ -20,7 +20,7 @@ Route::get('/login',function(){
 Route::get('/login2',function(){
     return view('login2');
 });
-Route::get('/stores',function(){
+Route::get('/stores/{locate}',function(){
     return view('stores');
 });
 

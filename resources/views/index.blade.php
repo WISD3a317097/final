@@ -14,6 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
     crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.js"></script>
     <style>
         button {
             cursor: pointer;
@@ -97,6 +98,24 @@
             }
             setTimeout("reload_timer()",1000);
         }
+        function golink(){
+            var locate=document.getElementById("locate").value;
+            if (locate=="台北" || locate=="台北市")
+                location.href="/stores/"+locate;
+        }
+        var cook=Cookies.get('shop');
+        $(document).ready(function(){
+            var cook=Cookies.get('shop');
+            console.log(cook)
+            if (typeof cook != 'undefined' &&cook!='' && cook!='undefined'){    
+                var html="<div class=dropdown><a class='btn btn-outline-success text-success' role=button id=member data-toggle=dropdown aria-haspopup='true' aria-expanded=false>"+cook+"</a><div class='dropdown-menu bg-dark' aria-labelledby='dropdownMenuButton'><a class='dropdown-item bg-dark text-success' onclick=logout()>登出</a></div></div>"
+                document.getElementById('members').innerHTML=html;
+            }   
+        });
+        function logout(){
+            Cookies.remove('shop');
+            location.href='/';
+        }
     </script>
 </head>
 
@@ -112,12 +131,12 @@
                 <ul class="navbar-nav mr-auto">
                     <nav class="navbar navbar-dark bg-dark">
                         <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="text" placeholder="請輸入外送地址" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜尋</button>
+                            <input class="form-control mr-sm-2" type="text" placeholder="請輸入外送地址" aria-label="Search" id="locate" >
+                            <a class="btn btn-outline-success my-2 my-sm-0 text-success" role="button" onclick="golink()">搜尋</a>
                         </form>
                     </nav>
                 </ul>
-                <ul class="navbar-nav ">
+                <ul class="navbar-nav" id="members">
                     <button class="btn btn-outline-success ml-sm-2" data-toggle="modal" data-target="#login">登入</button>
                     <button class="btn btn-outline-danger ml-sm-2" data-toggle="modal" data-target="#register">註冊</button>
                 </ul>
