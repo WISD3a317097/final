@@ -21,7 +21,7 @@ Route::get('/login2',function(){
     return view('login2');
 });
 Route::get('/stores',function(){
-    echo "fuck";
+    return view('stores');
 });
 
 Route::group(['prefix' => 'store/admin'],function(){
