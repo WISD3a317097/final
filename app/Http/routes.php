@@ -13,6 +13,9 @@
 Route::get('/addtalk',function(){
     return view('talk');
 });
+Route::get('/addtalk2',function(){
+    return view('talk2');
+});
 Route::get('/', function () {
     return view('index');
 });
