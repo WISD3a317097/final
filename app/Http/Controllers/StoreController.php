@@ -23,7 +23,7 @@ class StoreController extends Controller
     public function get_all(Request $request){
         $shop=new Shop;
         $all=$shop->where('city','like','%'.'北')->get();
-        echo $all;
+        #echo $all;
         
     }
     public function setting(){

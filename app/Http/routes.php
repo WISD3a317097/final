@@ -34,7 +34,7 @@ Route::group(['prefix' => 'store/admin'],function(){
     Route::get('/goods_management','StoreController@goods_management');
     Route::get('goods_update/{id}','StoreController@goods_update');
     Route::get('/setting','StoreController@setting');
-    Route::get('/get_all','StoreController@get_all');
+    Route::get('/get_all','StoreController@get_all');# 商店全部
 });
 Route::group(['prefix' => 'member/admin'],function(){
     Route::get('/','MemberController@index');
