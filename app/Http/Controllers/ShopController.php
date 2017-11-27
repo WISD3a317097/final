@@ -147,4 +147,39 @@ class ShopController extends Controller
         return response()->json(['success' => '1','data'=>$ans]);
         
     }
+    public function setting_name(Request $request){
+        $id=$this->Get_Shop_Id($request['email']);
+        try{
+            $shop=new Shop;
+            $shop::where('id',$id)->update(['shop_name'=>$request['id']]);
+        }
+        catch(\Exception $e){
+            return response()->json(['success' => '0']);
+        }
+        return response()->json(['success' => '1']);
+    }
+    public function setting(Request $request){
+        $id=$this->Get_Shop_Id($request['email']);
+        try{
+            $shop=new Shop;
+            $ans=$shop::find($id)->get();
+        }
+        catch(\Exception $e){
+            return response()->json(['success' => '0']);
+        }
+        return response()->json(['success' => '1','data'=>$ans]);
+    }
+    public function setting_time(Request $request){
+        $id=$this->Get_Shop_Id($request['email']);
+        try{
+            $shop=new Shop;
+            $shop::where('id',$id)->update(['moring'=>$request['time1'],'afternoon'=>$request['time2'],
+            'night'=>$request['time3'],'midnight'=>$request['time4']]);
+        }
+        catch(\Exception $e){
+            echo $e;
+            #return response()->json(['success' => '0']);
+        }
+        return response()->json(['success' => '1']);
+    }
 }
