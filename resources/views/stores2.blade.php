@@ -39,32 +39,7 @@
             Cookies.remove('shop');
             location.href='/';
         }
-        function getshop(){ 
-            var location="{{$locate}}"
-            $.ajax({
-                url: '/rest/api/shop/get_all',
-                dataType: "json",
-                type: 'get',
-                data: { locate:location},
-                success: function (data) {
-                    var shop=document.getElementById('shop');
-                    var html="";
-                    if(data.success==1){
-                        var d=data.data
-                        console.log(d)
-                        for(var i=0;i<d.length;i++){
-                            html+="<div class='col-4 mt-5'><div class='card' style='width: 20rem;'><div class='card-body'><h4 class='card-title'>"+d[i].shop_name+"</h4><p lass='card-text'></p><a class='btn btn-primary text-light' onclick='link_click("+d[i].id+")'>點擊</a></div></div></div>"
-                        }
-                    }
-                    shop.innerHTML+=html;
-                     
-                }        
-            });
-        }
-        function link_click(id){
-            
-            location.href='/shop/'+id
-        }
+        
     </script>
 </head>
 <body>
@@ -94,7 +69,7 @@
     <div class="container mt-5">
             <div class='row'>
                 <div class="mt-5">
-                    <h2>{{$locate."的餐廳"}}</h2>
+                    <h2 id="title"></h2>
                     <div class="row" id="shop">
                         
                         

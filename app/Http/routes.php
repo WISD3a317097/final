@@ -26,12 +26,12 @@ Route::get('/login2',function(){
     return view('login2');
 });
 #瀏覽店家
-Route::get('/stores/{locate}',function(){
-    return view('stores');
+Route::get('/stores/{locate}',function($locate){
+    return view('stores',['locate'=>$locate]);
 });
 Route::get('/shop/{id}',function(){
-    echo "AA";
-    #return view('stores2');
+    
+    return view('stores2');
 });
 Route::group(['prefix' => 'store/admin'],function(){
     Route::get('/','StoreController@index');
