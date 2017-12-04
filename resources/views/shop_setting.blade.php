@@ -89,6 +89,7 @@
             });
         }
         $(document).ready(function(){
+            //console.log(cook)
             $.ajax({
                     url: '/rest/api/shop/setting',
                     dataType: "json",
@@ -96,9 +97,10 @@
                     data:{email:cook},
                     success:function(data){
                         if(data.success==1){
-                            var data=data.data[0];
-                            console.log(data)
+                            var data=data.data;
+                            console.log("data",data)
                             var shop=document.getElementById('shop_name')
+                            
                             shop.value=data.shop_name;
                             document.getElementById('shop_button').className+='disabled'
                             var Radio1=document.getElementById('Radio1')

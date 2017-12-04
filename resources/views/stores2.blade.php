@@ -56,13 +56,31 @@
                     if(data.success==1){
                         var data=data.data
                         console.log(data)
-                        for(var i=0;i<data.length;i++){
-                            console.log(data[i].food)
-                            // html+=
+                        for(var i=0;i<1;i++){
+                            html+="<div class='col-4 mt-5'><div class=card style='width:15rem'>"
+                            if(data[i].img=="-1"){
+                                
+                            }
+                            else{
+                                html+="<img class='card-img-top' src=/image/"+data[i].img+">"
+                            }
+                            html+="<div class=card-body><h4 class='card-title'>"+data[i].food+"</h4><p class='card-text'>"+data[i].money+"元</p></div></div>"
+
                         }
                     }
                     shop.innerHTML+=html;
-                     
+
+                     <div class="col-4 mt-5">
+                             <div class="card" style="width: 15rem;">
+                                 <img class="card-img-top" src="/image/img_1511265472.jpg">
+                                 <div class="card-body">
+                                     <h4 class="card-title">Card title</h4>
+                                     <!--p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p-->
+                                     <a href="#" class="btn btn-primary">Go somewhere</a>
+                               </div>
+                             </div>
+                         </div>
+                     </div>
                 }        
             });
     }
@@ -94,10 +112,7 @@
                 <div class="mt-5">
                     <h2 id="title"></h2>
                     <div class="row" id="shop">
-                        
-                        
-
-                    </div>
+                    
                     
                    
                 </div>

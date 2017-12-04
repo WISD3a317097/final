@@ -149,6 +149,7 @@ class ShopController extends Controller
     }
     public function setting_name(Request $request){
         $id=$this->Get_Shop_Id($request['email']);
+        
         try{
             $shop=new Shop;
             $shop::where('id',$id)->update(['shop_name'=>$request['id']]);
@@ -158,15 +159,21 @@ class ShopController extends Controller
         }
         return response()->json(['success' => '1']);
     }
-    public function setting(Request $request){
+    public function setting(Request $request,Shop $shop){
+        
         $id=$this->Get_Shop_Id($request['email']);
+        
         try{
-            $shop=new Shop;
-            $ans=$shop::find($id)->get();
+            
+            $ans=$shop->where('id',$id)->first();
+           
+           
+            
         }
         catch(\Exception $e){
             return response()->json(['success' => '0']);
         }
+        
         return response()->json(['success' => '1','data'=>$ans]);
     }
     public function setting_time(Request $request){
