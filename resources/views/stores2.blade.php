@@ -26,7 +26,7 @@
     <script>
     var cook=Cookies.get('shop');
         $(document).ready(function(){
-            getshop();
+            GetShop();
             var cook=Cookies.get('shop');
             console.log(cook)
             if (typeof cook != 'undefined' &&cook!='' && cook!='undefined'){    
@@ -39,7 +39,33 @@
             Cookies.remove('shop');
             location.href='/';
         }
-        
+    function GetShop(){
+
+        $.ajax({
+                url: '/rest/api/shop/get_ShopAll_goods',
+                dataType: "json",
+                type: 'post',
+                data: { shop_id:{{$shop}}},
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    //console.log(data)
+                    var shop=document.getElementById('shop');
+                    var html="";
+                    if(data.success==1){
+                        var data=data.data
+                        console.log(data)
+                        for(var i=0;i<data.length;i++){
+                            console.log(data[i].food)
+                            // html+=
+                        }
+                    }
+                    shop.innerHTML+=html;
+                     
+                }        
+            });
+    }
     </script>
 </head>
 <body>
@@ -59,10 +85,7 @@
                         </form>
                     </nav>
                 </ul>
-                <ul class="navbar-nav" id="members">
-                    <button class="btn btn-outline-success ml-sm-2" data-toggle="modal" data-target="#login">登入</button>
-                    <button class="btn btn-outline-danger ml-sm-2" data-toggle="modal" data-target="#register">註冊</button>
-                </ul>
+                
             </div>
         </nav>
     </header> 

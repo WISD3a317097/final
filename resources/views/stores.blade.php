@@ -84,10 +84,7 @@
                         </form>
                     </nav>
                 </ul>
-                <ul class="navbar-nav" id="members">
-                    <button class="btn btn-outline-success ml-sm-2" data-toggle="modal" data-target="#login">登入</button>
-                    <button class="btn btn-outline-danger ml-sm-2" data-toggle="modal" data-target="#register">註冊</button>
-                </ul>
+               
             </div>
         </nav>
     </header> 

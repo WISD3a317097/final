@@ -215,4 +215,18 @@ class ShopController extends Controller
         return response()->json(['success' => '1','data'=>$data]);
         
     }
+    public function get_ShopAll_goods(Request $request,Shop $shops){
+        $id=$request['shop_id'];
+        $shops=$shops::find($id);
+        
+        foreach($shops->foodlist as $shop){
+           
+            if($shop->count()>0)
+                $data[]=array('id'=>$shop->food_id,'food'=>$shop->food,'money'=>$shop->money,'img'=>$shop->url,'content'=>$shop->content,'amount'=>$shop->amount);
+            else{
+                return response()->json(['success' => '0']); 
+            }
+        }
+        return response()->json(['success'=>'1','data'=>$data]);
+    }
 }

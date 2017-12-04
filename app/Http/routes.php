@@ -29,9 +29,9 @@ Route::get('/login2',function(){
 Route::get('/stores/{locate}',function($locate){
     return view('stores',['locate'=>$locate]);
 });
-Route::get('/shop/{id}',function(){
+Route::get('/shop/{id}',function($shopId){
     
-    return view('stores2');
+    return view('stores2',['shop'=>$shopId]);
 });
 Route::group(['prefix' => 'store/admin'],function(){
     Route::get('/','StoreController@index');
@@ -65,6 +65,7 @@ Route::group(['prefix'=>'rest/api/shop'],function(){
     Route::get('setting_time','ShopController@setting_time');
     Route::get('setting_name','ShopController@setting_name');
     Route::get('setting','ShopController@setting');
+    Route::post('get_ShopAll_goods','ShopController@get_ShopAll_goods');
     Route::delete('goods_delete','ShopController@goods_delete');#刪除貨物
 
 });
