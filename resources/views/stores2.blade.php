@@ -28,7 +28,11 @@
         $(document).ready(function(){
             GetShop();
             var cook=Cookies.get('shop');
+            //Cookies.remove('');
+            console.log(Cookies.get('shopcart'))
+            console.log(Cookies.get('shop'))
             console.log(cook)
+
             if (typeof cook != 'undefined' &&cook!='' && cook!='undefined'){    
                 //var html="<div class=dropdown><a class='btn btn-outline-success text-success' role=button id=member data-toggle=dropdown aria-haspopup='true' aria-expanded=false>"+cook+"</a><div class='dropdown-menu bg-dark' aria-labelledby='dropdownMenuButton'><a class='dropdown-item bg-dark text-success' onclick=logout()>登出</a></div></div>"
                 //document.getElementById('members').innerHTML=html;
@@ -41,8 +45,7 @@
         }
     var shopcart=Array();
     function Add_shopCart(id){
-        shopcart.push(id);
-        console.log(shopcart)
+        shopcart.push(id)
     }
     function GetShop(){
         $.ajax({
@@ -101,6 +104,13 @@
                 }        
             });
     }
+    function Checkout(){
+        url=location.href.split('/')
+        url=url[url.length-1]
+        
+        Cookies.set('shop',url)
+        Cookies.set('shopcart',shopcart)
+    }
     </script>
 </head>
 <body>
@@ -120,7 +130,10 @@
                         </form>
                     </nav>
                 </ul>
-                
+                <ul class="navbar-nav" id="members">
+                    <a class="btn btn-outline-success ml-sm-2 text-success" onclick="Checkout()">結帳</a>
+                    
+                </ul>
             </div>
         </nav>
     </header> 
