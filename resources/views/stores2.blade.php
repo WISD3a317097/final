@@ -70,7 +70,7 @@
                     }
                     shop.innerHTML+=html;
 
-                     <div class="col-4 mt-5">
+                    /*<div class="col-4 mt-5">
                              <div class="card" style="width: 15rem;">
                                  <img class="card-img-top" src="/image/img_1511265472.jpg">
                                  <div class="card-body">
@@ -80,7 +80,7 @@
                                </div>
                              </div>
                          </div>
-                     </div>
+                     </div>*/
                 }        
             });
     }

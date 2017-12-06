@@ -53,11 +53,21 @@
                         var d=data.data
                         console.log(d)
                         for(var i=0;i<d.length;i++){
-                            html+="<div class='col-4 mt-5'><div class='card' style='width: 20rem;'><div class='card-body'><h4 class='card-title'>"+d[i].shop_name+"</h4><p lass='card-text'></p><a class='btn btn-primary text-light' onclick='link_click("+d[i].id+")'>點擊</a></div></div></div>"
+                            console.log(i)
+                            html="<div class='col-4 mt-5'style='width: 25rem;'><div class='card'><div class='card-body'><h4 class='card-title'>"+d[i].shop_name+"</h4><a class='card-link text-primary' onclick='link_click("+d[i].id+")'>瀏覽</a></div></div></div"
+                            shop.innerHTML+=html;
                         }
+                       
                     }
-                    shop.innerHTML+=html;
-                     
+                    
+                    // <div class='col-4 mt-5'style='width: 20rem;'>
+		            //         <div class='card'>
+			        //             <div class='card-body'>
+				    //                 <h4 class='card-title'>"+d[i].shop_name+"</h4>
+				    //                 <a class='btn btn-primary text-light' onclick='link_click("+d[i].id+")'>點擊</a>
+			        //             </div>
+		            //         </div>
+	                //     </div>
                 }        
             });
         }
@@ -95,7 +105,9 @@
                     <div class="row" id="shop">
                         
                         
-
+                        
+                        
+                        
                     </div>
                     
                    
