@@ -33,7 +33,7 @@ Route::get('/shop/{id}',function($shopId){
     return view('stores2',['shop'=>$shopId]);
 });
 Route::get('/checkout',function(){
-    return "fuck";
+    return view('checkout');
 });
 Route::group(['prefix' => 'store/admin'],function(){
     Route::get('/','StoreController@index');
