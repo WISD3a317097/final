@@ -30,8 +30,8 @@
             var cook=Cookies.get('shop');
             console.log(cook)
             if (typeof cook != 'undefined' &&cook!='' && cook!='undefined'){    
-                var html="<div class=dropdown><a class='btn btn-outline-success text-success' role=button id=member data-toggle=dropdown aria-haspopup='true' aria-expanded=false>"+cook+"</a><div class='dropdown-menu bg-dark' aria-labelledby='dropdownMenuButton'><a class='dropdown-item bg-dark text-success' onclick=logout()>登出</a></div></div>"
-                document.getElementById('members').innerHTML=html;
+                //var html="<div class=dropdown><a class='btn btn-outline-success text-success' role=button id=member data-toggle=dropdown aria-haspopup='true' aria-expanded=false>"+cook+"</a><div class='dropdown-menu bg-dark' aria-labelledby='dropdownMenuButton'><a class='dropdown-item bg-dark text-success' onclick=logout()>登出</a></div></div>"
+                //document.getElementById('members').innerHTML=html;
             }
 
         });
@@ -39,8 +39,12 @@
             Cookies.remove('shop');
             location.href='/';
         }
+    var shopcart=Array();
+    function Add_shopCart(id){
+        shopcart.push(id);
+        console.log(shopcart)
+    }
     function GetShop(){
-
         $.ajax({
                 url: '/rest/api/shop/get_ShopAll_goods',
                 dataType: "json",
@@ -56,31 +60,44 @@
                     if(data.success==1){
                         var data=data.data
                         console.log(data)
-                        for(var i=0;i<1;i++){
-                            html+="<div class='col-4 mt-5'><div class=card style='width:15rem'>"
-                            if(data[i].img=="-1"){
+                        
+                        for(var i=0;i<data.length;i++){
+                            
+                            if(data[i].amount>0){
                                 
-                            }
-                            else{
-                                html+="<img class='card-img-top' src=/image/"+data[i].img+">"
-                            }
-                            html+="<div class=card-body><h4 class='card-title'>"+data[i].food+"</h4><p class='card-text'>"+data[i].money+"元</p></div></div>"
+                                if(data[i].img=="-1"){
+                                    html+="<div class='col-4 mt-5' style='width:50rem'><div class='card'>"
+                                }
+                                else{
+                                    html+="<div class='col-4 mt-5' style='width:30rem'><div class='card'>"
+                                    html+="<img class='card-img-top' src=/image/"+data[i].img+">"
+                                }
 
+                                html+="<div class=card-body><h4 class='card-title'>"+data[i].food+"</h4>"
+                                if(data[i].content!=null){
+                                    html+="<p class='card-text'>"+data[i].content+"</p><p class='card-text'>價錢： "+data[i].money+"元</p><a class='card-link text-primary' onclick=Add_shopCart("+data[i].id+")>加入購物車</a></div></div></div>"
+                                }
+                                else{
+                                    html+="<p class='card-text'>價錢： "+data[i].money+"元</p><a class='card-link text-primary' onclick=Add_shopCart("+data[i].id+")>加入購物車</a></div></div></div>"
+                                }
+                            }
+                             
                         }
+                        shop.innerHTML+=html;
                     }
-                    shop.innerHTML+=html;
+                    // <ul class='list-group list-group-flush'>
+                    //     <li class="list-group-item">Cras justo odio</li>
+                    //     
+                    // </ul>
 
-                    /*<div class="col-4 mt-5">
-                             <div class="card" style="width: 15rem;">
-                                 <img class="card-img-top" src="/image/img_1511265472.jpg">
-                                 <div class="card-body">
-                                     <h4 class="card-title">Card title</h4>
-                                     <!--p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p-->
-                                     <a href="#" class="btn btn-primary">Go somewhere</a>
-                               </div>
-                             </div>
-                         </div>
-                     </div>*/
+                    // <div class='col-4 mt-5'style='width: 20rem;'>
+		            //         <div class='card'>
+			        //             <div class='card-body'>
+				    //                 <h4 class='card-title'>"+d[i].shop_name+"</h4>
+				    //                 <a class='btn btn-primary text-light' onclick='link_click("+d[i].id+")'>點擊</a>
+			        //             </div>
+		            //         </div>
+	                //     </div>
                 }        
             });
     }
