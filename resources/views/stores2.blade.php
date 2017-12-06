@@ -110,6 +110,7 @@
         
         Cookies.set('shop',url)
         Cookies.set('shopcart',shopcart)
+        location.href="/checkout"
     }
     </script>
 </head>

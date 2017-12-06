@@ -30,8 +30,10 @@ Route::get('/stores/{locate}',function($locate){
     return view('stores',['locate'=>$locate]);
 });
 Route::get('/shop/{id}',function($shopId){
-    
     return view('stores2',['shop'=>$shopId]);
+});
+Route::get('/checkout',function(){
+    return "fuck";
 });
 Route::group(['prefix' => 'store/admin'],function(){
     Route::get('/','StoreController@index');
