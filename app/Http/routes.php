@@ -56,6 +56,7 @@ Route::group(['prefix' => 'rest/api'], function () {
     Route::post('/setting/shop','AdminController@shop');
     Route::post('/setting/recommend','AdminController@recommend');
     Route::post('/setting/disturb','AdminController@disturb');
+    
 });
  #api
 Route::group(['prefix'=>'rest/api/shop'],function(){
@@ -69,6 +70,8 @@ Route::group(['prefix'=>'rest/api/shop'],function(){
     Route::get('setting','ShopController@setting');
     Route::post('get_ShopAll_goods','ShopController@get_ShopAll_goods');
     Route::delete('goods_delete','ShopController@goods_delete');#刪除貨物
-
+});
+Route::group(['prefix'=>'rest/api/buy'],function(){
+    Route::post('/get_goods','BuyController@get_goods');//結帳 
 });
 

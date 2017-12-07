@@ -59,7 +59,6 @@
                         }
                        
                     }
-                    
                     // <div class='col-4 mt-5'style='width: 20rem;'>
 		            //         <div class='card'>
 			        //             <div class='card-body'>

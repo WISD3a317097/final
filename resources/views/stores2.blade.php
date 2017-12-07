@@ -108,7 +108,7 @@
         url=location.href.split('/')
         url=url[url.length-1]
         
-        Cookies.set('shop',url)
+        Cookies.set('Buy_shop',url)
         Cookies.set('shopcart',shopcart)
         location.href="/checkout"
     }
