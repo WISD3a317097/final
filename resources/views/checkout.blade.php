@@ -125,7 +125,30 @@
             document.getElementById("time").innerHTML=html;
         }
         function buy(){
+            var d = new Date();
+            var hr = d.getHours();
+            var min=d.getMinutes()+30;
+            if (min>=60){
+                hr++
+                min=min-60
+            }
+            if(hr==24)
+                hr=0
+            var time=document.getElementById("time").value;
+            var time1=parseInt(time.split(":")[0])
+            var time2=parseInt(time.split(':')[1])
+            total=(time1*60+time2)-(hr*60+min)
+            if(total>30)
+                document.getElementById("time").className='form-control'
+                var reserve=document.getElementById("reserve").value;
+                var shopcart=Cookies.getJSON('shopcart')
+                
+            else{
+                document.getElementById("time").className+=' is-invalid'
 
+            }
+           
+            
         }
     </script>
 </head>
@@ -147,11 +170,12 @@
                 </nav-->
             </ul>
             <ul class="navbar-nav" id="members">
-                <a class="btn btn-outline-success ml-sm-2 text-success" onclick="Checkout()">結帳</a>
+                <!--a class="btn btn-outline-success ml-sm-2 text-success" onclick="Checkout()">結帳</a-->
             </ul>
         </div>
     </nav>
 </header> 
+
     <div class="container mt-5">
         <div class='row'>
             <div class="mt-5">
@@ -177,6 +201,7 @@
                                 </div>
                             </div>
                         </form>
+                        
                         <form class='border border-info rounded p-2 mt-4' id="goods"> 
                             
                         </form>
@@ -192,7 +217,7 @@
                                     <label class='col-form-label col'>預約時間：</label>
                                 </div>
                                 <div class="col">
-                                <select class='form-control' id="time"></select>
+                                <select class='form-control' id="time" ></select>
                                 </div>
                             </div>
                         </form>
@@ -220,6 +245,7 @@
             </div>
         </div>
     </div>
+    
 </body>
 
 </html>

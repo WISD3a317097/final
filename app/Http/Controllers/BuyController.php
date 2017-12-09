@@ -27,8 +27,9 @@ class BuyController extends Controller
             #echo $e;
             return response()->json(['success' => '0']);
         }
-        
-
         return response()->json(['success'=>'1','data'=>$data,'time'=>$reserve]);
+    }
+    public function checkout(Request $request){
+        echo "AA"
     }
 }

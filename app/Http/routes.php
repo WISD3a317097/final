@@ -72,6 +72,7 @@ Route::group(['prefix'=>'rest/api/shop'],function(){
     Route::delete('goods_delete','ShopController@goods_delete');#刪除貨物
 });
 Route::group(['prefix'=>'rest/api/buy'],function(){
-    Route::post('/get_goods','BuyController@get_goods');//結帳 
+    Route::post('/get_goods','BuyController@get_goods');//結帳
+    Route::post('/checkout','BuyController@checkout'); 
 });
 
