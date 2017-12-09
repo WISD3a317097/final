@@ -30,6 +30,6 @@ class BuyController extends Controller
         return response()->json(['success'=>'1','data'=>$data,'time'=>$reserve]);
     }
     public function checkout(Request $request){
-        echo "AA"
+        echo $request['service'];
     }
 }

@@ -138,11 +138,34 @@
             var time1=parseInt(time.split(":")[0])
             var time2=parseInt(time.split(':')[1])
             total=(time1*60+time2)-(hr*60+min)
-            if(total>30)
+            if(total>30){
                 document.getElementById("time").className='form-control'
                 var reserve=document.getElementById("reserve").value;
                 var shopcart=Cookies.getJSON('shopcart')
+                var Buy_shop=Cookies.get('Buy_shop')
+                var member=Cookies.get('member')
                 
+                if(typeof member == 'undefined'){
+                    Cookies.set('login','1')
+                    location.href='/login'
+                }
+                else{
+                    $.ajax({
+                        url: '/rest/api/buy/checkout',
+                        dataType: "json",
+                        type: 'post',
+                        data: {shop:Buy_shop,goods:shopcart,user:member,service:reserve,reserve_time:time},
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                        
+                        
+                        }
+                    });
+                }
+                
+            }
             else{
                 document.getElementById("time").className+=' is-invalid'
 
@@ -245,7 +268,7 @@
             </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>
