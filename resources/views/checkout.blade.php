@@ -21,17 +21,12 @@
         a{
             cursor:pointer;
         }
-        label{
-            cursor:pointer;
-        }
+        
     </style>
     <script>
         
         $(document).ready(function(){
             var shopcart=Cookies.getJSON('shopcart')
-            
-            //console.log(shopcart)
-            //console.log(shop)
             set_view(shopcart)
         });
         function set_view(shopcart){
@@ -48,6 +43,7 @@
                 },
                 success: function (data) {
                     if(data.success==1){
+                        set_time(data.time)
                         var data=data.data
                         var html=""
 
@@ -60,10 +56,11 @@
                             }
                             html+="</select></div>"
                             html+="<div class='col'><label class='col col-form-label money' id=money"+data[i].food_id+">"+data[i].money+"</label></div>"
-                            html+="<div class='col'><label class='text-danger col col-form-label' onclick=delete_form('food_"+data[i].food_id+"')>刪除</label></div></div>"
+                            html+="<div class='col'><label class='text-danger col col-form-label' style='cursor:pointer;' onclick=delete_form('food_"+data[i].food_id+"')>刪除</label></div></div>"
                         }
                         document.getElementById("goods").innerHTML=html;
                         sum_total();
+                        
                     }
                 }
             });
@@ -85,8 +82,50 @@
         function delete_form(id){
 
             var r=document.getElementById(id);
+            var name=id.split('_')[1]
+            var shopcart=Cookies.getJSON('shopcart')
+            var shopcart2=[]
+            for(var i=0;i<shopcart.length;i++)
+                if(shopcart[i]!=parseInt(name))
+                    shopcart2.push(shopcart[i])
+            Cookies.set('shopcart',shopcart2)
             r.remove()
             sum_total()
+        }
+        function set_time(data){
+            var html=""
+            if(data[0].midnight)
+                 for(var i=0;i<6;i++){
+                    html+="<option>"+i+":00</option>"
+                    html+="<option>"+i+":15</option>"
+                    html+="<option>"+i+":30</option>"
+                    html+="<option>"+i+":45</option>"
+                }
+            if(data[0].morning)
+                for(var i=6;i<12;i++){
+                    html+="<option>"+i+":00</option>"
+                    html+="<option>"+i+":15</option>"
+                    html+="<option>"+i+":30</option>"
+                    html+="<option>"+i+":45</option>"
+                }
+            if(data[0].afternoon)
+                for(var i=12;i<18;i++){
+                    html+="<option>"+i+":00</option>"
+                    html+="<option>"+i+":15</option>"
+                    html+="<option>"+i+":30</option>"
+                    html+="<option>"+i+":45</option>"
+                }
+            if(data[0].night)
+                for(var i=18;i<24;i++){
+                    html+="<option>"+i+":00</option>"
+                    html+="<option>"+i+":15</option>"
+                    html+="<option>"+i+":30</option>"
+                    html+="<option>"+i+":45</option>"
+                }
+            document.getElementById("time").innerHTML=html;
+        }
+        function buy(){
+
         }
     </script>
 </head>
@@ -138,24 +177,24 @@
                                 </div>
                             </div>
                         </form>
-                        <form class='border border-success rounded p-2 mt-4' id="goods"> 
-                            <div class="form-row">
-                                <div class="col-5" style="width:40rem;">
-                                    <label  class="col col-form-label">商品</label>
-                                </div>
-                                <div class="col" style="width:20rem;">
-                                    <label  class="col col-form-label">單價</label>
+                        <form class='border border-info rounded p-2 mt-4' id="goods"> 
+                            
+                        </form>
+                        <form class='border border-success rounded p-2 mt-4'> 
+                            <div class="row">
+                                <div class="col">
+                                    <label class='col-form-label col'>選擇服務：</label>
                                 </div>
                                 <div class="col">
-                                    <label  class="col col-form-label">數量</label>
+                                    <select class='form-control' id="reserve"><option value=0>預約內用</option><option value=1>外送</option><option value=2>外帶（要親自拿哦）</option></select>
                                 </div>
                                 <div class="col">
-                                    <label  class="col col-form-label">總計</label>
+                                    <label class='col-form-label col'>預約時間：</label>
                                 </div>
                                 <div class="col">
-                                    <label  class="col col-form-label">操作</label>
+                                <select class='form-control' id="time"></select>
                                 </div>
-                            </div>  
+                            </div>
                         </form>
                         <form class='border border-warning rounded p-2 mt-4'> 
                             <div class="form-row">
@@ -172,7 +211,7 @@
                                     <label  class="col-4 col-form-label"><h3 id="total_money">40</h3></label>
                                 </div>
                                 <div class="col">
-                                    <label  class="col btn btn-success text-white col-form-label btn-lg">買單去</label>
+                                    <label  class="col btn btn-success text-white col-form-label btn-lg" style='cursor:pointer;' onclick="buy()">買單去</label>
                                 </div>
                             </div>  
                         </form>
