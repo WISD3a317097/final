@@ -21,9 +21,12 @@
         a{
             cursor:pointer;
         }
-        
+        label{
+            cursor:pointer;
+        }
     </style>
     <script>
+        
         $(document).ready(function(){
             var shopcart=Cookies.getJSON('shopcart')
             
@@ -47,29 +50,43 @@
                     if(data.success==1){
                         var data=data.data
                         var html=""
+
                         for(var i=0;i<data.length;i++){
-                            html+="<div class='form-row mt-2' id=food"+data[i].food_id+"><div class='col-5' style='width:40rem;'><label class='col col-form-label'>"+data[i].food+"<label></div>"
+                            html+="<div class='form-row mt-2' id=food_"+data[i].food_id+"><div class='col-5' style='width:40rem;'><label class='col col-form-label'>"+data[i].food+"<label></div>"
                             html+="<div class='col' style='width:20rem;'><label class='col col-form-label'>"+data[i].money+"<label></div>"
                             html+="<div class='col'><select class='form-control' onchange='change_money(this.value,money"+data[i].food_id+","+data[i].money+")'>"
                             for(var j=0;j<data[i].amount;j++){
                                 html+="<option>"+(j+1)+"</option>"
                             }
                             html+="</select></div>"
-                            html+="<div class='col'><label class='col col-form-label' id=money"+data[i].food_id+">"+data[i].money+"<label></div>"
-                            html+="<div class='col'><label class='text-danger col col-form-label' style='cursor:pointer;' onclick='delete_form('food"+data[i].food_id+"')'>刪除</label></div></div>"
-                            
+                            html+="<div class='col'><label class='col col-form-label money' id=money"+data[i].food_id+">"+data[i].money+"</label></div>"
+                            html+="<div class='col'><label class='text-danger col col-form-label' onclick=delete_form('food_"+data[i].food_id+"')>刪除</label></div></div>"
                         }
                         document.getElementById("goods").innerHTML=html;
+                        sum_total();
                     }
                 }
             });
 
         }
+        function sum_total(){
+            var T_money=0
+            var x = document.getElementsByClassName("money");
+            for(var i=0;i<x.length;i++){
+                T_money+=parseInt(x[i].innerHTML)
+            }
+            var total=document.getElementById('total_money'); 
+            total.innerHTML=T_money;
+        }
         function change_money(number,id,money){
             id.innerHTML=number*money
+            sum_total()
         }
-        function delete_form(){
-            
+        function delete_form(id){
+
+            var r=document.getElementById(id);
+            r.remove()
+            sum_total()
         }
     </script>
 </head>
@@ -105,41 +122,59 @@
                         <form class='border border-info rounded p-2 mt-4'> 
                             <div class="form-row">
                                 <div class="col-5" style="width:40rem;">
-                                    <label for="inputEmail3" class="col col-form-label">商品</label>
+                                    <label  class="col col-form-label">商品</label>
                                 </div>
                                 <div class="col" style="width:20rem;">
-                                    <label for="inputEmail3" class="col col-form-label">單價</label>
+                                    <label  class="col col-form-label">單價</label>
                                 </div>
                                 <div class="col">
-                                    <label for="inputEmail3" class="col col-form-label">數量</label>
+                                    <label  class="col col-form-label">數量</label>
                                 </div>
                                 <div class="col">
-                                    <label for="inputEmail3" class="col col-form-label">總計</label>
+                                    <label class="col col-form-label">總計</label>
                                 </div>
                                 <div class="col">
-                                    <label for="inputEmail3" class="col col-form-label">操作</label>
+                                    <label class="col col-form-label">操作</label>
                                 </div>
                             </div>
                         </form>
                         <form class='border border-success rounded p-2 mt-4' id="goods"> 
                             <div class="form-row">
                                 <div class="col-5" style="width:40rem;">
-                                    <label for="inputEmail3" class="col col-form-label">商品</label>
+                                    <label  class="col col-form-label">商品</label>
                                 </div>
                                 <div class="col" style="width:20rem;">
-                                    <label for="inputEmail3" class="col col-form-label">單價</label>
+                                    <label  class="col col-form-label">單價</label>
                                 </div>
                                 <div class="col">
-                                    <label for="inputEmail3" class="col col-form-label">數量</label>
+                                    <label  class="col col-form-label">數量</label>
                                 </div>
                                 <div class="col">
-                                    <label for="inputEmail3" class="col col-form-label">總計</label>
+                                    <label  class="col col-form-label">總計</label>
                                 </div>
                                 <div class="col">
-                                    <label for="inputEmail3" class="col col-form-label">操作</label>
+                                    <label  class="col col-form-label">操作</label>
                                 </div>
-                            </div>
-                            
+                            </div>  
+                        </form>
+                        <form class='border border-warning rounded p-2 mt-4'> 
+                            <div class="form-row">
+                                <div class="col-5" style="width:40rem;">
+                                    <label  class="col col-form-label"></label>
+                                </div>
+                                <div class="col" style="width:20rem;">
+                                    <label  class="col col-form-label"></label>
+                                </div>
+                                <div class="col">
+                                    <label  class="col col-form-label">購買總金額</label>
+                                </div>
+                                <div class="col">
+                                    <label  class="col-4 col-form-label"><h3 id="total_money">40</h3></label>
+                                </div>
+                                <div class="col">
+                                    <label  class="col btn btn-success text-white col-form-label btn-lg">買單去</label>
+                                </div>
+                            </div>  
                         </form>
                     </div>
                 </div>
