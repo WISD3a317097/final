@@ -52,14 +52,15 @@ Route::group(['prefix' => 'member/admin'],function(){
 Route::group(['prefix' => 'rest/api'], function () {
     Route::post('/login','AdminController@login');
     Route::post('/register','AdminController@register');
-    Route::post('/shop_login','AdminController@storelogin');
+    Route::post('/shop_login','AdminController@storelogin');#except
     Route::post('/setting','AdminController@setting');
     Route::post('/setting/shop','AdminController@shop');
     Route::post('/setting/recommend','AdminController@recommend');
     Route::post('/setting/disturb','AdminController@disturb');
+    Route::get('/check','AdminController@check');#得到該會員訂單
     
 });
- #api
+ #shop api
 Route::group(['prefix'=>'rest/api/shop'],function(){
     Route::get('/get_all','ShopController@get_all');# 商店全部
     Route::post('upload','ShopController@upload');#上架
