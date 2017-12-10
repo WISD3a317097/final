@@ -73,6 +73,6 @@ Route::group(['prefix'=>'rest/api/shop'],function(){
 });
 Route::group(['prefix'=>'rest/api/buy'],function(){
     Route::post('/get_goods','BuyController@get_goods');//結帳
-    Route::post('/checkout','BuyController@checkout'); 
+    Route::post('/checkout','BuyController@checkout'); //結帳2
 });
 
