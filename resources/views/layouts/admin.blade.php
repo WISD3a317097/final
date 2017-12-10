@@ -135,7 +135,7 @@
                         <a class="nav-link" href="#">追蹤</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">聊天室</a>
+                        <a class="nav-link" href="/member/admin/talk">聊天室</a>
                     </li>
                      <li class="nav-item">
                         <a class="nav-link" href="/member/admin/setting">設定</a>

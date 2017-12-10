@@ -19,7 +19,10 @@ class StoreController extends Controller
     public function goods_update(){
         return view('shop_edit');
     }
-    
+    public function talk(){
+
+        return view("talk2");
+    }
     public function setting(){
         return view('shop_setting');
     }
