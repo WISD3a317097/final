@@ -22,7 +22,34 @@ class BuyController extends Controller
         $user=new User;
         $user=$user::where('email',$email)->first();
         return $user['id'];
-
+    }
+    public function detail(Request $request,Flowchart $flow,Lists $lists){
+        $id=$request['orderlist'];
+        
+        try{
+            $flow=$flow::find($id);
+            foreach($flow->get() as $o){
+                $data[]=array('one'=>$o->flowchart_set,'two'=>$o->flowchart_make,'three'=>$o->flowchart_way,'four'=>$o->flowchart_done,
+                'time1'=>$o->time_set,'time2'=>$o->make,'time3'=>$o->way,'time4'=>$o->done);
+            }
+            foreach($flow->orderlist as $o){
+                $order[]=array('total_money'=>$o->total_money,'service'=>$o->reserve,'time'=>$o->time);
+            }
+            $lists=$lists::find($id)->get();
+            for($i=0;$i<count($lists);$i++){
+                $name=$this->get_foodName($lists[$i]->food_id);
+                $ll[]=array('food'=>$name,'amount'=>$lists[$i]->amount,'money'=>$lists[$i]->money);
+            }    
+        }catch(\Exception $e){
+            
+            return response()->json(['success' => '0']);
+        }
+        return response()->json(['success'=>'1','data'=>$data,'order'=>$order,'food'=>$ll]);
+    }
+    public function get_foodName($id){
+        $foodlist=new Foodlist;
+        $f=foodlist::where('food_id',$id)->first();
+        return $f['food'];
     }
     public function get_goods(Request $request,Foodlist $food,Shop $shop){
         $all=$request['Shop'];
@@ -33,10 +60,7 @@ class BuyController extends Controller
                 $s=$ans->shop_id;
             }
             $time=$shop::find($s)->first();
-            $reserve[]=array('morning'=>$time['moring'],'afternoon'=>$time['afternoon'],'night'=>$time['night'],'midnight'=>$time['midnight']);
-              
-            
-            
+            $reserve[]=array('morning'=>$time['moring'],'afternoon'=>$time['afternoon'],'night'=>$time['night'],'midnight'=>$time['midnight']);     
         }catch(\Exception $e){
             #echo $e;
             return response()->json(['success' => '0']);
