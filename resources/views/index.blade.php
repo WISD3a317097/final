@@ -116,7 +116,7 @@
             }   
         });
         function logout(){
-            Cookies.remove('shop');
+            Cookies.remove('member');
             location.href='/';
         }
     </script>
