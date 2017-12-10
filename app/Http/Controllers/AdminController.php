@@ -131,9 +131,10 @@ class AdminController extends Controller
     public function check(Request $request,Orderlist $order){
         $id=$this->search_member($request['id']);
         try{
-            $order=$order::where('user_id',$id)->get();
+            $order=$order::where(['user_id'=>$id])->orderBy('updated_at','desc')->take(8)->get();
             
         }catch(\Exception $e){
+            //echo $e;
             return response()->json(['success' => '0']);
         }
         return response()->json(['success' => '1','data'=>$order]);
