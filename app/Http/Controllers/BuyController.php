@@ -34,14 +34,16 @@ class BuyController extends Controller
             }
             foreach($flow->orderlist as $o){
                 $order[]=array('total_money'=>$o->total_money,'service'=>$o->reserve,'time'=>$o->time);
+                $shop=$o->shop;
             }
             $lists=$lists::find($id)->get();
             for($i=0;$i<count($lists);$i++){
                 $name=$this->get_foodName($lists[$i]->food_id);
                 $ll[]=array('food'=>$name,'amount'=>$lists[$i]->amount,'money'=>$lists[$i]->money);
-            }    
-        }catch(\Exception $e){
+            }  
             
+        }catch(\Exception $e){
+            //echo $e;
             return response()->json(['success' => '0']);
         }
         return response()->json(['success'=>'1','data'=>$data,'order'=>$order,'food'=>$ll]);
