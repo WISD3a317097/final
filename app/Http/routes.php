@@ -45,7 +45,8 @@ Route::group(['prefix' => 'store/admin'],function(){
 Route::group(['prefix' => 'member/admin'],function(){
     Route::get('/','MemberController@index');#通知
     Route::get('/setting','MemberController@setting');
-    Route::get('/check','MemberController@check');#訂單
+    Route::get('/check','MemberController@check');#訂單瀏覽
+    Route::get('/check/{id}','MemberController@detailcheck');#詳細資訊
     
 });
 #會員api＋登入註冊+ 設定
@@ -58,6 +59,7 @@ Route::group(['prefix' => 'rest/api'], function () {
     Route::post('/setting/recommend','AdminController@recommend');
     Route::post('/setting/disturb','AdminController@disturb');
     Route::get('/check','AdminController@check');#得到該會員訂單
+    
     
 });
  #shop api

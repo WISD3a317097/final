@@ -19,5 +19,7 @@ class MemberController extends Controller
     public function check(){
         return view('check');
     }
-
+    public function detailcheck($id){
+        return view('detail_check',['id'=>$id]);
+    }
 }
