@@ -47,6 +47,7 @@
                 type: 'get',
                 data: { locate:location},
                 success: function (data) {
+                    console.log(data)
                     var shop=document.getElementById('shop');
                     var html="";
                     if(data.success==1){

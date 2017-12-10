@@ -197,17 +197,17 @@ class ShopController extends Controller
             $num = (int)$datetime;
            
             if($num>=6&&$num<12){
-                $all=$shop::where(['city'=> '台北','moring'=>'1'])->get();
+                $all=$shop::where(['city'=> $request['locate'],'moring'=>'1'])->get();
             }
             if($num>=12&&$num<18){
                 
-                $all=$shop::where(['city'=> '台北','afternoon'=>'1'])->get();
+                $all=$shop::where(['city'=> $request['locate'],'afternoon'=>'1'])->get();
             }
-            if($num>=19&&$num<22){
-                $all=$shop::where(['city'=> '台北','midnight'=>'1'])->get();
+            if($num>=18&&$num<22){
+                $all=$shop::where(['city'=> $request['locate'],'midnight'=>'1'])->get();
             }
             if(($num>=22&&$num<=25)||($num>=0&&$num<6)){
-                $all=$shop::where(['city'=> '台北','night'=>'1'])->get();
+                $all=$shop::where(['city'=> $request['locate'],'night'=>'1'])->get();
             }
             
             foreach($all as $shop){
@@ -216,9 +216,10 @@ class ShopController extends Controller
             
         }
         catch(\Exception $e){
-            #echo $e;
+            //echo $e;
             return response()->json(['success' => '0']);
         }
+        
         return response()->json(['success' => '1','data'=>$data]);
         
     }

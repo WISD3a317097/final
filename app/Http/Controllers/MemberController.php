@@ -16,6 +16,8 @@ class MemberController extends Controller
     public function setting(){
         return view('setting');
     }
-    
+    public function check(){
+        return view('check');
+    }
 
 }

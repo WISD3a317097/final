@@ -50,7 +50,7 @@
                         for(var i=0;i<data.length;i++){
                             html+="<div class='form-row mt-2' id=food_"+data[i].food_id+"><div class='col-5' style='width:40rem;'><label class='col col-form-label'>"+data[i].food+"<label></div>"
                             html+="<div class='col' style='width:20rem;'><label class='col col-form-label'>"+data[i].money+"<label></div>"
-                            html+="<div class='col'><select class='form-control' onchange='change_money(this.value,money"+data[i].food_id+","+data[i].money+")'>"
+                            html+="<div class='col'><select class='form-control food' onchange='change_money(this.value,money"+data[i].food_id+","+data[i].money+")'>"
                             for(var j=0;j<data[i].amount;j++){
                                 html+="<option>"+(j+1)+"</option>"
                             }
@@ -66,6 +66,7 @@
             });
 
         }
+        total_money=0;
         function sum_total(){
             var T_money=0
             var x = document.getElementsByClassName("money");
@@ -74,8 +75,10 @@
             }
             var total=document.getElementById('total_money'); 
             total.innerHTML=T_money;
+            total_money=T_money;
         }
         function change_money(number,id,money){
+            
             id.innerHTML=number*money
             sum_total()
         }
@@ -141,25 +144,37 @@
             if(total>30){
                 document.getElementById("time").className='form-control'
                 var reserve=document.getElementById("reserve").value;
-                var shopcart=Cookies.getJSON('shopcart')
+                
                 var Buy_shop=Cookies.get('Buy_shop')
                 var member=Cookies.get('member')
-                
+               
                 if(typeof member == 'undefined'){
                     Cookies.set('login','1')
                     location.href='/login'
                 }
                 else{
+                    var shopcart=Cookies.getJSON('shopcart')
+                    var select=document.getElementsByClassName('food');
+                    var shopcart2=[]
+                    for(var i=0;i<select.length;i++){
+                        var cart={
+                            'shopcart':shopcart[i],
+                            'amount':select[i].value
+                        }
+                        shopcart2.push(cart);
+                    }
+                        shopcart=shopcart2
                     $.ajax({
                         url: '/rest/api/buy/checkout',
                         dataType: "json",
                         type: 'post',
-                        data: {shop:Buy_shop,goods:shopcart,user:member,service:reserve,reserve_time:time},
+                        data: {shop:Buy_shop,goods:shopcart,user:member,service:reserve,reserve_time:time,money:total_money},
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function (data) {
-                        
+                            if(data.success==1)
+                                location.href="/";
                         
                         }
                     });

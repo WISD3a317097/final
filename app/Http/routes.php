@@ -43,8 +43,9 @@ Route::group(['prefix' => 'store/admin'],function(){
     
 });
 Route::group(['prefix' => 'member/admin'],function(){
-    Route::get('/','MemberController@index');
+    Route::get('/','MemberController@index');#通知
     Route::get('/setting','MemberController@setting');
+    Route::get('/check','MemberController@check');#訂單
     
 });
 #會員api＋登入註冊+ 設定
